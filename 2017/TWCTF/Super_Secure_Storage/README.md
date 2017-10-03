@@ -8,12 +8,12 @@
 
 문제 페이지에 접속하면 다음과 같은 화면이 나온다.
 
-![1](1.PNG)
+![1](1.png)
 
 data에 암호화 할 내용을 적고, key를 입력하고 store하면 암호화하여 저장하는 것 같다.
 store하면 http://s3.chal.ctf.westerns.tokyo/#/data/81282와 같은 페이지로 이동하는데, 마지막에 81282은 저장된 data의 인덱스다.
 
-![2](2.PNG)
+![2](2.png)
 
 암호화 할때 적은 key를 입력하면 위와 같이 평문을 얻을 수 있다.
 js코드를 보다보니 rc4로 구현된 것을 확인할 수 있다.
@@ -314,6 +314,6 @@ print key
 ```
 key의 값이 `t2gavAjbPtj9gyps`인 것을 알아냈으니 http://s3.chal.ctf.westerns.tokyo/#/data/1의 key값에 t2gavAjbPtj9gyps을 넣으면 flag를 얻을 수 있다.
 
-![3](3.PNG)
+![3](3.png)
 
 **TWCTF{yet-an0ther-pyth0n-0rac1e}**
