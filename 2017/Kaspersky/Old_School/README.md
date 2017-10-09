@@ -1,6 +1,6 @@
 # [FUN] Kaspersky 2017 - Old School
 
-# # Description
+# Description
 Hey! Do you like playing? Are you old school?
 
 Have fun!
@@ -48,6 +48,7 @@ Concat answer to KLCTF prefix
 
 해당 주소는 nes파일이 로드되었을때 메모리에 매핑되는 주소 값이다.
 스테이지 2부터의 Decimal값들을 모아 String으로 변경하면 다음과 같은 문구를 얻을 수 있다.
+
 2. 87,69,76,67,79,77,69           (WELCOME)
 3. 89,79,85,87,73,76,76           (YOUWILL)
 4. 70,73,78,68,84,72,69           (FINDTHE)
