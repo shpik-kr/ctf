@@ -122,7 +122,7 @@ for i in range(len(ciphertext)/bs):
 > 평문 ^ IV ^ 조작된 평문 = 조작된 IV
 > 
 
-```pythonimport urllib
+```python
 import urllib
 import urllib2
 
