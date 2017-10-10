@@ -62,7 +62,14 @@ Oracle Padding 각이 나온다.
 
 많은 에러문 중 아래의 에러 유형을 통해 평문을 추출할 수 있을 것 같다.
 ```
-Traceback (most recent call last):<br>  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1612, in full_dispatch_request<br>    rv = self.dispatch_request()<br>  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1598, in dispatch_request<br>    return self.view_functions[rule.endpoint](**req.view_args)<br>  File "/var/www/FlaskApp/FlaskApp/__init__.py", line 53, in index<br>    user_info_decrypted = json.loads(aes_decrypt(user_info).decode())<br>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe9 in position 16: ordinal not in range(128)
+Traceback (most recent call last):
+File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1612, in full_dispatch_request
+rv = self.dispatch_request()
+File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1598, in dispatch_request
+return self.view_functions[rule.endpoint](**req.view_args)
+File "/var/www/FlaskApp/FlaskApp/__init__.py", line 53, in index
+user_info_decrypted = json.loads(aes_decrypt(user_info).decode())
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe9 in position 16: ordinal not in range(128)
 ```
 16번째 위치에서 0xe9를 ascii로 디코드 못하는 에러이다.
 
@@ -70,7 +77,9 @@ Traceback (most recent call last):<br>  File "/usr/local/lib/python2.7/dist-pack
 
 Oracle Padding에서는 평문을 `(intermediary) ^ (조작된 IV) ^ (조작된 평문)`의 연산을 통해 얻는다.
 > intermediary ^ iv = 평문
+> 
 > 조작된 평문 ^ 조작된 iv = intermediary
+> 
 > 조작된 평문 ^ 조작된 iv ^ intermediary = 평문
 > 
 
