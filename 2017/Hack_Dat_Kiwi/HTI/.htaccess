@@ -1,0 +1,6 @@
+Order Deny,Allow
+Deny from all
+
+<FilesMatch ^$|\.php$|\.js$|\.css$|\.jpg$>
+        Allow from all
+</FilesMatch>

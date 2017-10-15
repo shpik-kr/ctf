@@ -5,6 +5,7 @@
 - Cyberone PT Team
 
 ## Achievement
+- 2017, Hack Dat Kiwi CTF 14위 (TenDollar)
 - 2017, Samsung CTF Final 35위 (shpik)
 - 2017, Samsung CTF 72위 (shpik)
 - 2017, bugs_bunny CTF 52위 (crayon)

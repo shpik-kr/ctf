@@ -1,0 +1,9 @@
+php_value include_path .:..:../..
+php_value auto_prepend_file config.php
+php_value short_open_tag on
+Order Deny,Allow
+Deny from all
+
+<FilesMatch ^$|\.php$|\.js$|\.css$>
+        Allow from all
+</FilesMatch>

@@ -1,0 +1,14 @@
+php_value include_path .:..:../..
+php_value short_open_tag on
+php_value max_execution_time 1
+php_value max_input_time -1
+php_value max_input_vars 1000
+php_value post_max_size 2M
+php_value upload_max_filesize 2M
+php_value auto_prepend_file config.php
+Order Deny,Allow
+Deny from all
+
+<FilesMatch ^$|\.php$|\.js$|\.css$>
+        Allow from all
+</FilesMatch>

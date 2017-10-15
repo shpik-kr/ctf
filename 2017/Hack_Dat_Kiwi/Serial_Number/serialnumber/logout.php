@@ -1,0 +1,3 @@
+<?php
+logout();
+header("location: ./");
