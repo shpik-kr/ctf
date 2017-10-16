@@ -2,7 +2,7 @@
 
 # Description
 
->   문제 페이지 닫힘
+>  10 years has passed since MD5 was broken, yet it is still frequently used in web applications, particularly PHP powered applications (maybe because there's a function after it?). Break it again to prove the point!
 
 # Analysis
 
