@@ -8,7 +8,7 @@
 
 문제 페이지에 접속하면 소스코드를 보여준다.
 
-```php+HTML
+```php
 <?php
 if (!shell_exec("which openssl"))
     die("Challenge Error: need openssl installed\n");
@@ -84,7 +84,7 @@ hasher함수 첫 부분에서 ctype_alnum이 아니면 null값을 리턴해준�
 
 >  extract() 함수는 이전에 정의된 변수의 값을 변경할 수 있다.
 
-이를 이용하여 $user의 값을 @로 변경하고 $password의 값을 \*로 하여 POST로 넘겨주면 hasher 함수에서 ctype_alnum 함수에 의해 null이 리턴되고, 최종적으로 `if (hasher($user)==hasher($password) and $user!=$password)`의 식이 `if(null==null and '@'!='\*')`이 되어 flag를 얻을 수 있다.
+이를 이용하여 $user의 값을 @로 변경하고 $password의 값을 \*로 하여 POST로 넘겨주면 hasher 함수에서 ctype_alnum 함수에 의해 null이 리턴되고, 최종적으로 `if (hasher($user)==hasher($password) and $user!=$password)`의 식이 `if(null==null and '@'!='*')`이 되어 flag를 얻을 수 있다.
 
 ```html
 Welcome! Flag is: g1diXbB2kfaGjS0V.
