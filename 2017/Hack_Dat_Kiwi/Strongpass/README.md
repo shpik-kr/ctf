@@ -74,7 +74,7 @@ function changepass($oldpass,$newpass)
 
 우리가 플래그를 얻기위해 php에 저장할 내용은 다음과 같다.
 
-```php+html
+```php
 <?
 	$a=flag;
 	$a();
@@ -99,7 +99,7 @@ function changepass($oldpass,$newpass)
 
 그러면 최종적으로 아래와 같이 완성된다.
 
-```php+HTML
+```php
 <?#
   $a#
   =#

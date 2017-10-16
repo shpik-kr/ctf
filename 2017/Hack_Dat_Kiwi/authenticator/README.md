@@ -10,7 +10,7 @@
 
 소스는 다음과 같다.
 
-```php+HTML
+```php
 <!-- index.php -->
 <?php
 $url=url();
