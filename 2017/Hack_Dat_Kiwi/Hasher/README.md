@@ -59,7 +59,7 @@ if (isset($password))
 
 user과 password 값이 같지 않으면서 hasher 함수의 리턴값이 같아야 flag를 얻을 수 있다.
 
-hasher 함수를 보면 제일 번서 ctype_alnum함수로 입력 값이 알파벳+숫자인지 체크해주고, 그 후 shell_exec를 통해 암호화 한다.
+hasher 함수를 보면 제일 먼저 ctype_alnum함수로 입력 값이 알파벳+숫자인지 체크해주고, 그 후 shell_exec를 통해 암호화 한다.
 
 마지막으로 str_xor함수를 통해 xor연산을 해준다.
 
