@@ -1,5 +1,7 @@
 # PHP Vulnerability
 
+###### Author : shpik (@TenDollar)
+
 ## Introduce
 
 이 문서는 취약한 함수 및 PHP Trick에 대한 연구 및 자료 수집입니다.
@@ -51,6 +53,7 @@
 
 
 
+
 #### mixed parse_url ( string $url [, int $component ] )
 
 *  간단하게 URL을 파싱해준다.
@@ -71,6 +74,7 @@
 * ==의 경우 타입은 중요하게 생각하지 않는다.
   * e.g. var_dump(False==0) = True
 * ==와 ===의 Comparison Table을 한번 참고해보는 것이 좋다.
+
 
 
 
@@ -97,6 +101,7 @@
 
 
 
+
 #### Type casting
 
 *  PHP에서 Integer 타입 캐스팅 부분을 이용한 Trick이 존재한다.
@@ -116,6 +121,7 @@
 >  이를 이용하여 number에 101e-1을 넣을 경우 (int)'101e-1'이 되어 101이 리턴되어 참이되고 두번째는 101e-1이 연산되어 참이 나와 flag를 출력하게 된다.
 
 *  하지만 캐스팅 관련 부분은 보기도 드물 뿐더러 코딩 상의 실수이기 때문에 찾기는 힘들겠지만, 가끔 Wargame이나 CTF에서 나오기도 한다.
+
 
 
 
