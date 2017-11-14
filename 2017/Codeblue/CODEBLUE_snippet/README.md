@@ -1,4 +1,4 @@
-# [MISC] Codeblue CTF 2017 - CODE BLUE Snippet
+# [WEB] Codeblue CTF 2017 - CODE BLUE Snippet
 
 # Description
 
