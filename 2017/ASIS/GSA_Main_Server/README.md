@@ -69,6 +69,7 @@ md5고 해서 엄청 고민하다가 그냥 문뜩 생각났다. Hash Length Ext
 > 참고 : https://blog.skullsecurity.org/2012/everything-you-need-to-know-about-hash-length-extension-attacks
 
 파이썬 스크립트를 작성하여 해쉬를 만들어 원하는 파일을 요청하게 만들었다.
+
 ```python
 import hashpumpy
 import urllib2
