@@ -6,7 +6,7 @@
 - Web Hacking @TenDollar
 
 ## Achievement
-- 2018, Codate CTF Quals 49위 (TenDollar)
+- 2018, Codegate CTF Quals 49위 (TenDollar)
 - 2018, Insomnia'hack teaser 74위 (TenDollar)
 - 2017, CODEBLUE CTF 51위 (TenDollar)
 - 2017, HITCON CTF 48위 (TenDollar)
