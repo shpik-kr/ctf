@@ -10,6 +10,7 @@
 - 2018, Insomnia'hack teaser 74위 (TenDollar)
 - 2017, CODEBLUE CTF 51위 (TenDollar)
 - 2017, HITCON CTF 48위 (TenDollar)
+- 2017, 사이버공격방어대회(CCE) 13위 (TenDollar)
 - 2017, Hack.lu CTF 42위 (TenDollar)
 - 2017, Hack Dat Kiwi CTF 14위 (TenDollar)
 - 2017, Kaspersky CTF 61위 (TenDollar)

