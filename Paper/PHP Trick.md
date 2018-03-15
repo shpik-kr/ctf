@@ -16,7 +16,7 @@
 
 ## Vulnerable Function
 
-#### int strpos ( string $haystack, mixed $needle [, int $offset ] )
+#### int strpos ( string \$haystack, mixed \$needle [, int \$offset ] )
 
 * haystack 문자열에서 needle이 처음 나타나는 인덱스를 반환하고, needle을 발견하지 못할경우 False를 반환한다.
 * 취약점을 설명하기 위한 예제를 보자.
@@ -39,7 +39,7 @@
 
 
 
-#### string system ( string $command [, int &$return_var ] )
+#### string system ( string \$command [, int &\$return_var ] )
 
 * shell에서 command의 명령어를 수행한다.
 * 해당 함수에서는 주로 `command injection`, `remote code execution` 이 발생하게 된다.
@@ -54,11 +54,27 @@
 
 
 
-#### mixed parse_url ( string $url [, int $component ] )
+#### mixed parse_url ( string \$url [, int \$component ] )
 
 *  간단하게 URL을 파싱해준다.
 *  반환 값 : schema, host, port, user, pass, path, query, fragment
 *  해당 함수는 파싱 과정에서 취약점이 존재한다. ( SSRF 유발 가능 )
+
+
+
+
+#### string create_function ()
+
+*  유저가 function을 생성한다.
+*  ​
+
+>  ```Php
+>  $funstring = 'return -1 * var_dump($a[""]);}phpinfo();/*"]';
+>  $unused = create_function('',$funstring);
+>  ```
+>
+>  2번째 인자를 이용해 Code Injection이 가능하다.
+
 
 
 
