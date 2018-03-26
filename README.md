@@ -6,6 +6,10 @@
 - Web Hacking @TenDollar
 
 ## Achievement
+- 2018, N1CTF 67위 (TenDollar)
+- 2018, Xiomara CTF 45위 (TenDollar)
+- 2018, Pragyan CTF 26위 (CyB3r1)
+- 2018, TAMU CTF 40위 (TenDollar)
 - 2018, Codegate CTF Quals 49위 (TenDollar)
 - 2018, Insomnia'hack teaser 74위 (TenDollar)
 - 2017, CODEBLUE CTF 51위 (TenDollar)

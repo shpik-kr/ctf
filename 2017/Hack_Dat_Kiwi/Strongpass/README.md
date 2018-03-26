@@ -84,7 +84,7 @@ function changepass($oldpass,$newpass)
 이제 md5의 raw값으로 php코드를 만들기 위해 다음 문자열로 시작하는 md5값을 구해보자.
 
 1. \<?# : !wo352rgxkf8
-2. $a# : G14$W41KER
+2. \$a# : G14\$W41KER
 3. =# : TCCU6IDENTTFD
 4. f.# : Bvsycr9n9iwohnja
 5. l.# : NIKF0RIDI5
