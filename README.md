@@ -6,6 +6,10 @@
 - Web Hacking @TenDollar
 
 ## Achievement
+- 2018, ASIS CTF Quals 81위 (TenDollar)
+- 2018, Blaze CTF 65위 (TenDollar)
+- 2018, Timisoara CTF Quals 33위 (steins;gate0)
+- 2018, Midnight Sun CTF Quals 22위 (TenDollar)
 - 2018, N1CTF 67위 (TenDollar)
 - 2018, Xiomara CTF 45위 (TenDollar)
 - 2018, Pragyan CTF 26위 (CyB3r1)
