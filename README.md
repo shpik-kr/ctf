@@ -6,6 +6,8 @@
 - Web Hacking @TenDollar
 
 ## Achievement
+- 2018, DEFCON CTF Quals 15위 (C.G.K.S) - Final
+- 2018, Plaid CTF 23위 (CGKS)
 - 2018, ASIS CTF Quals 81위 (TenDollar)
 - 2018, Blaze CTF 65위 (TenDollar)
 - 2018, Timisoara CTF Quals 33위 (steins;gate0)
