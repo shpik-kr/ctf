@@ -6,7 +6,7 @@
 
 ## writeup
 
-### - r-recursive
+### - r-cursive
 
 문제에 접속하면 단순히 sandbox를 생성해주는 페이지에 접속한다.~~(폰트가 정말 거지같다.)~~
 
