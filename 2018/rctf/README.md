@@ -40,7 +40,7 @@ sha1($_SERVER['REMOTE_ADDR']) === 'c9bfd6fc4ed10bcd8abd93062b6b643cbcce0295' ?: 
 
 cmd뒤에 명령어를 삽입해주면 되는데, 정규식으로 인해 쿼리는 `phpinfo();`, `print_r(scandir(getcwd()));` 와 같은 형태로 함수로만 넣을 수 있다.
 
-하지만 이 문제는 `open_basedir`이 적용되어 있어, `/var/www/sandbox/c9bfd6fc4ed10bcd8abd93062b6b643cbcce0295/`,`/tmp/` 외의 디렉토리는 사용할 수 있다.
+하지만 이 문제는 `open_basedir`이 적용되어 있어, `/var/www/sandbox/c9bfd6fc4ed10bcd8abd93062b6b643cbcce0295/`,`/tmp/` 외의 디렉토리는 사용할 수 없다.
 
 disable_functions, disable_classes를 보기위해 `phpinfo()` 를 실행시켰는데, 다른 것 또한 발견하였다.
 
