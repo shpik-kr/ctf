@@ -3,9 +3,10 @@
 ## whoami
 - shpik @Republic of Korea
 - Security Researcher @Cyberone PT Team 
-- Web Hacking @TenDollar
+- Web/Pwnable @TenDollar
 
 ## Achievement
+- 2018, KO-WORLD CTF Quals ?위 (TenDollar) - Final
 - 2018, DEFCON CTF Quals 15위 (C.G.K.S) - Final
 - 2018, Plaid CTF 23위 (CGKS)
 - 2018, ASIS CTF Quals 81위 (TenDollar)
