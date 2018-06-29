@@ -20,7 +20,7 @@ My Solved Problem :
 
 Full Writup
 
-[Link](https://)
+\[ [Link](https://github.com/SeahunOh/ctf/blob/master/2018/Whitehat/whitehat2018_TenDollar.pdf) \]
 
 
 
