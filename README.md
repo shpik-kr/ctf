@@ -6,9 +6,10 @@
 - Web/Pwnable @TenDollar
 
 ## Achievement
-- 2018, Whitehat Contest Quals 11위(TenDollar)
-- 2018, KO-WORLD 해킹방어대회 Final 2위(TenDollar)
-- 2018, KO-WORLD 해킹방어대회 Quals ?위(TenDollar)
+- 2018, Samsung CTF 35위 (shpik)
+- 2018, Whitehat Contest Quals 11위 (TenDollar)
+- 2018, KO-WORLD 해킹방어대회 Final 2위 (TenDollar)
+- 2018, KO-WORLD 해킹방어대회 Quals ?위 (TenDollar)
 - 2018, DEFCON CTF Quals 15위 (C.G.K.S)
 - 2018, Plaid CTF 23위 (CGKS)
 - 2018, ASIS CTF Quals 81위 (TenDollar)
