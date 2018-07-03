@@ -18,3 +18,9 @@ Full Writup
 
 
 
+Solved Problem after contest : 
+
+- Webcached : Web + SSRF + Redis + Pickle => webcached.md, webcached.py
+
+  
+
