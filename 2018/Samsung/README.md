@@ -1,4 +1,4 @@
-# Whitehat Contest 2018 Quals
+# Samsung CTF 2018 Quals
 
 Nickname : shpik
 
@@ -18,7 +18,7 @@ Full Writup
 
 
 
-Solved Problem after contest : 
+Solved Problem after ctf : 
 
 - Webcached : Web + SSRF + Redis + Pickle => webcached.md, webcached.py
 
