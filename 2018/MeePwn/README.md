@@ -253,7 +253,7 @@ Your OTP for transaction #731337 in ABCXYZ Bank is 500000000.
 
 또한, public key에서 추출한 e는 3이어서 간단하게 아래의 식을 시도하였다.
 
-![](http://www.sciweavers.org/tex2img.php?eq=m%20%3D%20c%5E%7B1%2F3%7DmodN&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+m= c^(1/3) modN
 
 하지만 암호화한 평문의 길이는 N보다 훨씬 크기때문에 매우 시간이 오래 걸릴 것이다.
 
@@ -267,13 +267,13 @@ Your OTP for transaction #731337 in ABCXYZ Bank is 500000000.
 
 우선 e가 3일때 RSA를 통해 문자열을 암호화 하는 것은 다음과 같다.
 
-![](http://www.sciweavers.org/tex2img.php?eq=c%3Dm%5E3%20modN&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+c = N*x + m^3
 
 위 식은 다음과 같이 표현이 가능하다.
 
-![](http://www.sciweavers.org/tex2img.php?eq=c%3DN*x%2Bm%5E3&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+c = m^3 modN
 
-![](http://www.sciweavers.org/tex2img.php?eq=m%3d%5Csqrt%5B3%5D%7Bc-N*x%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+m = 3sqrt(c-N*x)
 
 여기서 중요한 점은 x의 범위가 프로그램의 작동 시간 내에 계산이 완료되어야 하고, 또한 메모리의 한계를 초과해서는 안된다.
 
