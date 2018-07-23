@@ -4,7 +4,7 @@
 
 - [pycalx](#pycalx) - web / python3.6 / eval
 - [pycalx2](#pycalx2) - web / python3.6 / eval
-- [White Snow, Black Shadow](#White Snow, Black Shadow) - misc / file header
+- [White Snow, Black Shadow](#white-snow-black-shadow) - misc / file header
 - [Welcome](#Welcome) - misc / sanity check
 - [bazik](#bazik) - crypto / brute force(?)
 - [esor](#esor) - crypto / simple decrypt rsa
