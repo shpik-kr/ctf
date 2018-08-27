@@ -3,9 +3,18 @@
 ## whoami
 - shpik @Republic of Korea
 - Security Researcher @Cyberone PT Team 
+  - 2017.01 ~ Now
+- Computer Science Engineering @Inha Universary
+  - 2010.03 ~ 2017.02
 - Web/Pwnable @TenDollar
+- DEFCON 26 Finalist
 
 ## Achievement
+- 2018, Samsung CTF Final 33위 (shpik)
+- 2018, Hackcon CTF 18위 (TenDollar)
+- 2018, TJCTF 16위 (TenDollar)
+- 2018, DEFCON 26 Final 13위 (C.G.K.S)
+- 2018, CODEBLUE CTF Quals 14위 (TenDollar)
 - 2018, Samsung CTF 35위 (shpik)
 - 2018, Whitehat Contest Quals 11위 (TenDollar)
 - 2018, KO-WORLD 해킹방어대회 Final 2위 (TenDollar)
