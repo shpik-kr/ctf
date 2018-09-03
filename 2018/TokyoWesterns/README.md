@@ -1,4 +1,4 @@
-# TokyoWestern 2018 Quals
+# TokyoWesterns 2018 Quals
 
 ## Solved Problem
 
