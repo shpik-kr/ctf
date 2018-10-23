@@ -53,7 +53,7 @@ I think that it is block cipher.
 >
 > Block mode = ECB or OFB.
 
-If X and Y have an X in Y, then that is OFB. ( X = plain1^plain2, Y = s1^s2 )
+If Y have X, then that is OFB. ( X = plain1^plain2, Y = s1^s2 )
 
 But it is not now, so I think ECB.
 
