@@ -1,6 +1,6 @@
 # MeePwnCTF 2018 Writeup
 
-## Solved Problem
+## Problem
 
 - [pycalx](#pycalx) - web / python3.6 / eval
 - [pycalx2](#pycalx2) - web / python3.6 / eval

@@ -1,6 +1,6 @@
 # CSAW CTF 2018 Quals
 
-## List
+## Problem
 
 - Hacker Movie Club - web / Cache Poisoning
 - Oauth2 - web / oauth2 / 
@@ -9,11 +9,13 @@
 
 ### Description
 
-
+N/A
 
 ### Exploit
 
+Cache Poisoning 문제였는데, 문제 풀고 따로 정리를 안해놓았다.
 
+남아있는건 아래의 로그뿐...
 
 ```
 root@vultr:/tmp/xss# python -m SimpleHTTPServer 10101
