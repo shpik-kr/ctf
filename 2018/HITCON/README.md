@@ -242,7 +242,7 @@ send_packets = packet.split('\x02\x0c\x20')
 allow_len = ['\x1b','\x1c','\x1d']
 p = ['\x81','\x82','\x83','\x84','\x85','\x00']
 flag = []
-for	send_packet in send_packets[1:]:
+for send_packet in send_packets[1:]:
 	l = send_packet[0]
 	if l in allow_len:
 		q = send_packet[2:2+ord(l)]
