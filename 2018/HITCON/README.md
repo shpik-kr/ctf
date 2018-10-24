@@ -27,11 +27,17 @@ But, this functions are operated by s parameter.
 Here is file download's s value.
 
 >**Author :** Ghostbuster: Detecting the Presence of Hidden Eavesdroppers [pdf]
+>
 >**Filename :** 70c97cc1-079f-4d01-8798-f36925ec1fd7.pdf
+>
 >**s :** 2e7e305f2da018a2cf8208fa1fefc238522c932a276554e5f8085ba33f9600b301c3c95652a912b0342653ddcdc4703e5975bd2ff6cc8a133ca92540eb2d0a42
 >
+>
+>
 >**Author :** WEAPON SYSTEMS CYBERSECURITY: DOD Just Beginning to Grapple with Scale of Vulnerabilities (pdf)
+>
 >**Filename :** 09609b66-e193-42aa-bc2d-07542ca4442e.pdf
+>
 >**s :** 2e7e305f2da018a2cf8208fa1fefc238be24b0e6a4592fab1f8a22a342e43575e547d2499523d59754ba9923e44088052a5be3ba8bae2a943ca92540eb2d0a42
 
 If you look at the s value above, It can be seen that only a few blocks are different in the middle.
