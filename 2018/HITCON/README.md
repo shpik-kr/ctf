@@ -22,18 +22,20 @@ It have some functions.
 2. If you click article, then redirect article's source page. - redirect
 3. normal file download.
 
-But, this functions are operated by s parameter.
+But, these functions are operated by s parameter.
 
 Here is file download's s value.
+
+**File 1.**
 
 >**Author :** Ghostbuster: Detecting the Presence of Hidden Eavesdroppers [pdf]
 >
 >**Filename :** 70c97cc1-079f-4d01-8798-f36925ec1fd7.pdf
 >
 >**s :** 2e7e305f2da018a2cf8208fa1fefc238522c932a276554e5f8085ba33f9600b301c3c95652a912b0342653ddcdc4703e5975bd2ff6cc8a133ca92540eb2d0a42
->
->
->
+
+**File 2.**
+
 >**Author :** WEAPON SYSTEMS CYBERSECURITY: DOD Just Beginning to Grapple with Scale of Vulnerabilities (pdf)
 >
 >**Filename :** 09609b66-e193-42aa-bc2d-07542ca4442e.pdf
@@ -61,11 +63,11 @@ I think that it is block cipher.
 
 If Y have X, then that is OFB. ( X = plain1^plain2, Y = s1^s2 )
 
-But it is not now, so I think ECB.
+But it is not now, so I think **ECB**.
 
 In the hint of the problem, I specified that Key is lowercase.
 
-Therefore, i tried to 8byte brute force using hashcat, then i got a Key value.
+Therefore, i tried to <u>8 byte brute force</u> using hashcat, then i got a **Key** value.
 
 ```
 $ ./hashcat -m 14000 f8085ba33f9600b3:2d303739662d3464 -a 3 '?l?l?l?l?l?l?l?l'
@@ -82,7 +84,7 @@ f8085ba33f9600b3:2d303739662d3464:ldgonaro
 ... ...
 ```
 
-The key used to encrypt the DES-ECB was ldgonaro.
+The key used to encrypt the **DES-ECB** was **ldgonaro**.
 
 flag is hitcon{ldgonaro}? No.
 
@@ -232,7 +234,7 @@ Simple packet analysis problem.
 
 You can get a flag by looking at the **RFCOMM** packet.
 
-It is python code to extracting flag.
+Here is python code to extracting flag.
 
 ```python
 with open('ev3_basic.pklg','rb') as f:
