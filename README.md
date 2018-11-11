@@ -10,6 +10,10 @@
 - DEFCON 26 Finalist
 
 ## Achievement
+- 2018, 사이버공격방어대회(CCE) Fianl 9위 (TenDollar)
+- 2018, SECCON CTF Quals 19위 (TenDollar)
+- 2018, 사이버공격방어대회(CCE) Quals 7위 (TenDollar)
+- 2018, Hackover CTF 9위 (TenDollar)
 - 2018, Samsung CTF Final 33위 (shpik)
 - 2018, Hackcon CTF 18위 (TenDollar)
 - 2018, TJCTF 16위 (TenDollar)
@@ -33,7 +37,7 @@
 - 2018, Insomnia'hack teaser 74위 (TenDollar)
 - 2017, CODEBLUE CTF 51위 (TenDollar)
 - 2017, HITCON CTF 48위 (TenDollar)
-- 2017, 사이버공격방어대회(CCE) 13위 (TenDollar)
+- 2017, 사이버공격방어대회(CCE) Quals 13위 (TenDollar)
 - 2017, Hack.lu CTF 42위 (TenDollar)
 - 2017, Hack Dat Kiwi CTF 14위 (TenDollar)
 - 2017, Kaspersky CTF 61위 (TenDollar)
