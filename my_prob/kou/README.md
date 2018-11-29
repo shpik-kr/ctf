@@ -14,9 +14,7 @@ Author: @shpik
 
 Eagle-Jump is black company?
 
-~~[*] Notice: We trying to fix an issue of this challenge. :'(~~ (Server is running now)
-
-Server Info: <http://web2.tendollar.kr:10101/
+Server Info: http://web2.tendollar.kr:10101/
 
 ## Exploit
 
