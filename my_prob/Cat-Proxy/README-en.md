@@ -323,7 +323,7 @@ class Requests{
 file_exists("phar://phar.phar");
 ```
 
-![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img1.png)
+![](./img1.png)
 
 Successfully read!!!
 
@@ -403,7 +403,7 @@ $phar->setMetadata($obj);
 
 The hex value of generated test.tar is as follows.
 
-![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img2.png)
+![](./img2.png)
 
 The first part contains the data you put through `$phar["AAABshpik"] = "FLAGFLAGFLAG";`.
 
@@ -447,7 +447,7 @@ But there is urldecode funtion in file_exists function, we uploaded "phar%3a%2f%
 
 **filename :** phar%3a%2f%2fshpik_etcpasswd.jpg
 
-![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img3.png)
+![](./img3.png)
 
 You have successfully read /etc/passwd.
 
@@ -567,7 +567,7 @@ You can see that there are flag and user in cat.
 
 Now you can create a phar file that executes "select * from cat.flag" and upload it to the server to get the flag.
 
-![](/Users/osehun/Git-CTF/my_prob/Cat-Proxy/img4.png)
+![](./img4.png)
 
 
 
