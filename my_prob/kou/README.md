@@ -174,7 +174,7 @@ f로 kou.so를 요청하면 `loadFile`이나 `login`함수를 가지고 있는 *
 
 ![](./img3.png)
 
-**loginchk**함수에서는 id롸 pw를 비교하여 값이 같을 때 True를 리턴합니다.
+**loginchk**함수에서는 id과 pw를 비교하여 값이 같을 때 True를 리턴합니다.
 
 하지만 id는 kou이면서 pw는 1e0c6abede7ff7184c3cefe606f9760a이어야 하는데, loginchk.php에서는 id가 kou가 들어가면 안됩니다.
 
