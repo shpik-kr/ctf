@@ -9,9 +9,17 @@
 - Web/Pwnable @TenDollar
 - DEFCON 26 Finalist
 
+## Vulnerability
+
+- CVE-2018-13410
+- CVE-2018-19296
+
 ## Achievement
+- 2018, Pwn2Win CTF 13위 (TenDollar)
+- 2018, TenDollar CTF 3rd - **Operator**
 - 2018, 사이버공격방어대회(CCE) Fianl 9위 (TenDollar)
 - 2018, SECCON CTF Quals 19위 (TenDollar)
+- 2018, BSides Delhi CTF 21위 (TenDollar)
 - 2018, 사이버공격방어대회(CCE) Quals 7위 (TenDollar)
 - 2018, Hackover CTF 9위 (TenDollar)
 - 2018, Samsung CTF Final 33위 (shpik)
