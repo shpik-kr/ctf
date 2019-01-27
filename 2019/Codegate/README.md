@@ -145,7 +145,7 @@ Source Code에 따라 POST형식에 맞춰서 날려주니 돈이 200억이 되�
 
 Python으로 구현된 VM 문제입니다.
 
-VM문제 특성상 Disassembler를 만들어주면 됩니다. [[Link]()]
+VM문제 특성상 Disassembler를 만들어주면 됩니다. [[Link](PyProt3ct/play.py)]
 
 분석을 해보면 패스워드는 8자리이며, 특정 연산을 마쳤을 시 일정한 값이 나와야 합니다.
 
