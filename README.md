@@ -15,6 +15,8 @@
 - CVE-2018-19296
 
 ## Achievement
+- 2019, Codegate CTF Quals 23위 (TenDollar)
+- 2019, InterKosen CTF 3위 (KimchiPower)
 - 2018, Pwn2Win CTF 13위 (TenDollar)
 - 2018, TenDollar CTF 3rd - **Operator**
 - 2018, 사이버공격방어대회(CCE) Fianl 9위 (TenDollar)
