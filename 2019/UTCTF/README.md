@@ -103,19 +103,19 @@ static u32 f29(u32 p0) {
   ...
   if (i0) {
     i0 = l3;  
-    l1 = i0;  //  l1 = 5
+    l1 = i0;  
     L7: 
       i0 = l1;
-      i0 = i32_load(Z_envZ_memory, (u64)(i0)); // herehere
+      i0 = i32_load(Z_envZ_memory, (u64)(i0)); 
       l10 = i0;
       i0 = l10;
-      i1 = 4278124287u; // 0xfefefeff
-      i0 += i1; // 0xfefefeff+5
-      l11 = i0; // l11 = 0xfefefeff+5
+      i1 = 4278124287u; 
+      i0 += i1; 
+      l11 = i0; 
       i0 = l10;
       i1 = 2155905152u;
       i0 &= i1; 
-      l12 = i0; // l12 = l11&0x80808080
+      l12 = i0; 
       i0 = l12;
       i1 = 2155905152u;
       i0 ^= i1;
