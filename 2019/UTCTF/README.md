@@ -247,7 +247,7 @@ i1 = 6u;
 i0 = i0 == i1;	// current index check
 ```
 
-다음의 코드를 보면 뭔가 load하고 store하는 것을 볼 수 있다.
+다음의 코드를 보면 뭔가 load하고 store하는 것을 볼 수 있습니다.
 
 ```c
 i0 = l74;
