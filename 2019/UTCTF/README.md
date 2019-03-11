@@ -1,4 +1,4 @@
-# UTCTF 2018
+# UTCTF 2019
 
 Problem is good, but Server is ... :)
 
@@ -320,3 +320,4 @@ print 'utflag{'+bytearray(q)+'}'
 ```
 
 **FLAG :** utflag{congrats_ur_a_js_ninja_d834jd}
+
