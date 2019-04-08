@@ -85,11 +85,9 @@ class PrivateSigningKey:
 `assert(bytes_to_long(m) % (self.q - 1) != 0)` is not allow euler's theorem.
 
 But, It is not secure.
-$$
-gen^{u*m} =  k \bmod q\\
-if\ u=0\bmod 2\ and\ m = (q-1)/2,\ then,\\
-k = gen^{(u/2)(q-1)} = (gen^{(q-1)})^{(u/2)} = 1^{(u/2)} = 1 \bmod q
-$$
+
+![euler](./midnight_01.png)
+
 So, we make k set 1.
 
 In conclusion k is 1,  then we can calculate key.
