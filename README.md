@@ -2,24 +2,27 @@
 
 ## whoami
 - shpik @Republic of Korea
-- Security Researcher @Cyberone PT Team 
-  - 2017.01 ~ Now
+- Security Researcher @Cyberone Inc. R&D
+  - 2017.01 ~ 2019.04
 - Computer Science Engineering @Inha Universary
   - 2010.03 ~ 2017.02
-- Web/Pwnable @TenDollar
+- Web/Pwnable @TenDollar @Mashiro
 - DEFCON 26 Finalist
 
 ## Vulnerability
 
 - CVE-2018-13410
 - CVE-2018-19296
+- Lots of KVE (Naver, CMS, and so on)
 
 ## Achievement
+- 2019, Midnight Sun CTF Quals 23위 (Harekaze)
+- 2019, UTCTF 23위 (Mashiro)
 - 2019, Codegate CTF Quals 23위 (TenDollar)
 - 2019, InterKosen CTF 3위 (KimchiPower)
 - 2018, Pwn2Win CTF 13위 (TenDollar)
 - 2018, TenDollar CTF 3rd - **Operator**
-- 2018, 사이버공격방어대회(CCE) Fianl 9위 (TenDollar)
+- 2018, 사이버공격방어대회(CCE) Final 9위 (TenDollar)
 - 2018, SECCON CTF Quals 19위 (TenDollar)
 - 2018, BSides Delhi CTF 21위 (TenDollar)
 - 2018, 사이버공격방어대회(CCE) Quals 7위 (TenDollar)
