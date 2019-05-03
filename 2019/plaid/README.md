@@ -2,4 +2,9 @@
 
 I'm just attended by solving web problem :)
 
-So, i'll upload web writeup.
+Therefore i'll upload web writeup.
+
+**triggered**  -  Race Condition because of login logic
+
+**Potent Quotables** - XSS using Cache as HTTP/0.9
+
