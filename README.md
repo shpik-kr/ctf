@@ -1,19 +1,7 @@
-# Profile
+# ctf write-up repo
 
-## whoami
-- shpik @Republic of Korea
-- Security Researcher @Cyberone Inc. R&D
-  - 2017.01 ~ 2019.04
-- Computer Science Engineering @Inha Universary
-  - 2010.03 ~ 2017.02
-- Web/Pwnable @TenDollar @Mashiro
-- DEFCON 26 Finalist
-
-## Vulnerability
-
-- CVE-2018-13410
-- CVE-2018-19296
-- Lots of KVE (Naver, CMS, and so on)
+## shpik
+https://shpik.kr
 
 ## Achievement
 - 2019, Midnight Sun CTF Quals 23위 (Harekaze)
