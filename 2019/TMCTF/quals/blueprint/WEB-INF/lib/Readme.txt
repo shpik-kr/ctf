@@ -1,0 +1,1 @@
+Dependencies go in this folder. They were removed to make the blueprint smaller. 
